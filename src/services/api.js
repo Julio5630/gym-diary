@@ -1,4 +1,4 @@
-// src/services/api.js
+// frontend/src/services/api.js
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 let authToken = null;
@@ -25,40 +25,36 @@ async function request(endpoint, options = {}) {
         headers['Authorization'] = `Bearer ${token}`;
     }
 
-    console.log(`[API] ${options.method || 'GET'} ${endpoint}`, { headers });
-
+    const url = `${API_URL}${endpoint}`;
+    
     try {
-        const response = await fetch(`${API_URL}${endpoint}`, {
+        const response = await fetch(url, {
             ...options,
             headers,
         });
 
-        const data = await response.json().catch(() => ({}));
-
         if (!response.ok) {
-            throw new Error(data.error || `Erro ${response.status}`);
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || `Erro ${response.status}`);
         }
 
-        return data;
+        if (response.status === 204) return null;
+        return await response.json();
     } catch (error) {
-        console.error(`[API] Erro em ${endpoint}:`, error);
+        console.error(`[API] Erro:`, error.message);
         throw error;
     }
 }
 
 export const api = {
-    // Auth
     login: (email, password) => request('/auth/login', {
         method: 'POST',
         body: JSON.stringify({ email, password }),
     }),
-
     register: (name, email, password, isAdmin = false) => request('/auth/register', {
         method: 'POST',
         body: JSON.stringify({ name, email, password, isAdmin }),
     }),
-
-    // Exercícios
     getExercises: () => request('/exercises'),
     createExercise: (name, category) => request('/exercises', {
         method: 'POST',
@@ -69,8 +65,6 @@ export const api = {
         body: JSON.stringify({ name, category }),
     }),
     deleteExercise: (id) => request(`/exercises/${id}`, { method: 'DELETE' }),
-
-    // Templates
     getTemplates: () => request('/templates'),
     createTemplate: (name, exercises) => request('/templates', {
         method: 'POST',
@@ -81,15 +75,11 @@ export const api = {
         body: JSON.stringify({ name, exercises }),
     }),
     deleteTemplate: (id) => request(`/templates/${id}`, { method: 'DELETE' }),
-
-    // Rotina
     getRoutine: () => request('/routines'),
     updateRoutineDay: (dayOfWeek, templateId) => request('/routines', {
         method: 'POST',
         body: JSON.stringify({ day_of_week: dayOfWeek, template_id: templateId }),
     }),
-
-    // Histórico
     getHistory: () => request('/history'),
     saveWorkout: (workoutData) => request('/history', {
         method: 'POST',
