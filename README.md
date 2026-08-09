@@ -1,110 +1,97 @@
-# Gym Diary
+<div align="center">
+  <img src="readme-assets/banner.svg" width="100%" alt="Gym Diary — plataforma full stack para gerenciamento de treinos" />
+</div>
 
-Aplicação completa para gerenciamento de treinos em academia com funcionalidades de rotinas, histórico de exercícios e progresso.
+<div align="center">
 
+[![React](https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Node.js](https://img.shields.io/badge/Node.js_18+-1F2937?style=for-the-badge&logo=node.js&logoColor=84CC16)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-1F2937?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![MySQL](https://img.shields.io/badge/MySQL-1F2937?style=for-the-badge&logo=mysql&logoColor=F59E0B)](https://www.mysql.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-84CC16?style=for-the-badge)](gym-diary/LICENSE)
 
+**Planeje sua semana, execute cada série e acompanhe sua evolução em um único lugar.**
 
-## Visão Geral
+</div>
 
-Gym Diary é uma plataforma web desenvolvida para auxiliar usuários no gerenciamento de seus treinos em academia. O sistema oferece recursos para criação de rotinas personalizadas, execução de treinos com rastreamento em tempo real, análise de histórico de exercícios e visualização de progresso.
+## Sobre o projeto
 
-## Informações Acadêmicas
+O **Gym Diary** é uma aplicação web full stack para gerenciamento de treinos. A plataforma permite criar fichas personalizadas, organizar uma rotina semanal, registrar séries, repetições e cargas durante a execução e consultar a evolução ao longo do tempo.
 
-**Professor Orientador:** [Hudson Neves](https://github.com/HudsonNeves)
+O projeto foi desenvolvido como trabalho acadêmico, com orientação do professor [Hudson Neves](https://github.com/HudsonNeves), e reúne frontend responsivo, API REST, autenticação e persistência em banco de dados relacional.
 
-
-*Demonstração
+## Demonstração
 
 ### Desktop
+
 <div align="center">
-  <img src="readme-assets/desktop.gif" alt="Demonstração Desktop - Execução" width="100%" />
+  <img src="readme-assets/desktop.gif" width="100%" alt="Demonstração do Gym Diary em desktop" />
 </div>
 
 ### Mobile
+
 <div align="center">
-  <img src="readme-assets/mobile.gif" alt="Demonstração Mobile - Execução" width="100%" />
+  <img src="readme-assets/mobile.gif" width="360" alt="Demonstração do Gym Diary em dispositivo móvel" />
 </div>
 
----
+## Principais funcionalidades
 
+| Área | Recursos |
+|---|---|
+| **Conta e acesso** | Cadastro, login com JWT, rotas protegidas e controle administrativo |
+| **Treinos** | Criação e edição de fichas, exercícios e séries padrão |
+| **Rotina semanal** | Associação de treinos a cada dia da semana |
+| **Modo de execução** | Registro de séries, repetições, carga e progresso durante o treino |
+| **Histórico** | Consulta de treinos concluídos e detalhes de cada sessão |
+| **Progresso** | Indicadores e gráficos baseados no histórico registrado |
+| **Administração** | Gerenciamento de usuários por contas administrativas |
+| **Experiência** | Interface responsiva e transições com Framer Motion |
 
+## Tecnologias
 
-## Tecnologias Utilizadas
-
-### Backend
-- **Node.js** v18.0.0 ou superior
-- **Express.js** 4.22.1 - Framework web
-- **MySQL2** 3.20.0 - Driver para banco de dados
-- **JWT (jsonwebtoken)** 9.0.3 - Autenticação e autorização
-- **bcrypt** 6.0.0 - Hash de senhas
-- **CORS** 2.8.6 - Controle de origem de requisições
-- **dotenv** 16.6.1 - Gerenciamento de variáveis de ambiente
-
-### Frontend
-- **React** 18.2.0 - Biblioteca de UI
-- **Vite** 5.0.8 - Bundler e servidor de desenvolvimento
-- **React Router** 6.22.0 - Roteamento de páginas
-- **Framer Motion** 11.0.0 - Animações
-- **Recharts** 2.12.0 - Gráficos e visualizações
-
-### Banco de Dados
-- **MySQL** 5.7+ - Armazenamento de dados
-
----
-
-## Funcionalidades Principais
-
-### Autenticação e Autorização
-- Registro de novos usuários
-- Login com JWT
-- Gerenciamento de perfis de usuário
-- Painel administrativo
-
-### Gerenciamento de Treinos
-- Criação e gerenciamento de rotinas personalizadas
-- Templates de treinos pré-definidos
-- Execução de treinos com interface interativa
-- Rastreamento de séries, repetições e peso
-
-### Análise e Progresso
-- Histórico detalhado de todos os exercícios realizados
-- Gráficos de progresso ao longo do tempo
-- Biblioteca completa de exercícios
-- Dashboard com resumo de atividades
-
-### Modo de Treinamento
-- Interface dedicada para execução de treinos
-- Toggle entre modo de visualização e modo de edição
-- Navegação intuitiva entre exercícios
-
----
-
-## Requisitos do Sistema
-
-- Node.js v18.0.0 ou superior
-- npm ou yarn como gerenciador de pacotes
-- MySQL 5.7 ou superior
-- Navegador moderno (Chrome, Firefox, Safari, Edge)
-
----
-
-## Instalação
-
-### 1. Clonar o repositório
-
-```bash
-git clone https://github.com/[seu-usuario]/gym-diary.git
-cd gym-diary
+```text
+Frontend       React 18 · Vite · React Router · Framer Motion · Recharts
+Backend        Node.js · Express · JWT · bcrypt
+Banco de dados MySQL · mysql2
+Deploy         Render Blueprint
 ```
 
-### 2. Configurar Backend
+## Arquitetura
+
+```mermaid
+flowchart LR
+    U[Usuário] --> F[React + Vite]
+    F -->|HTTP / JSON| A[API Express]
+    A --> M[Autenticação JWT]
+    A --> C[Controllers]
+    C --> D[(MySQL)]
+```
+
+O frontend consome a API por meio de `VITE_API_URL`. No backend, as rotas delegam as regras aos controllers, enquanto o acesso ao MySQL é centralizado em um pool de conexões.
+
+## Como executar
+
+### Pré-requisitos
+
+- Node.js 18 ou superior
+- npm 9 ou superior
+- MySQL 5.7 ou superior
+
+### 1. Clone e acesse a aplicação
+
+```bash
+git clone https://github.com/Julio5630/gym-diary.git
+cd gym-diary/gym-diary
+```
+
+### 2. Configure o backend
 
 ```bash
 cd backend
 npm install
 ```
 
-Criar arquivo `.env` na pasta backend:
+Crie `backend/.env`:
 
 ```env
 PORT=3000
@@ -112,303 +99,124 @@ NODE_ENV=development
 
 DB_HOST=localhost
 DB_PORT=3306
-DB_USER=seu_usuario_mysql
-DB_PASSWORD=sua_senha_mysql
+DB_USER=root
+DB_PASSWORD=sua_senha
 DB_NAME=gym_diary
 
-JWT_SECRET=sua_chave_secreta_jwt
+JWT_SECRET=troque_por_uma_chave_longa_e_aleatoria
 ```
 
-### 3. Configurar Frontend
+Inicie a API:
 
 ```bash
-cd frontend
+npm run dev
+```
+
+A inicialização cria o banco e as tabelas necessárias. A API ficará disponível em `http://localhost:3000`.
+
+### 3. Configure o frontend
+
+Em outro terminal:
+
+```bash
+cd gym-diary/frontend
 npm install
 ```
 
-Criar arquivo `.env` na pasta frontend (se necessário):
+Crie `frontend/.env`:
 
 ```env
 VITE_API_URL=http://localhost:3000/api
 ```
 
-### 4. Inicializar Banco de Dados
-
-No backend:
+Inicie a interface:
 
 ```bash
 npm run dev
 ```
 
-O script `init-db.js` será executado automaticamente na primeira inicialização, criando as tabelas necessárias.
+Acesse `http://localhost:5173`.
 
----
+> [!IMPORTANT]
+> A inicialização atual cria uma conta administrativa de desenvolvimento.
 
-## Execução
+Para uma configuração mais detalhada, consulte o [guia de instalação](gym-diary/INSTALLATION.md).
 
-### Desenvolvimento
+## Scripts disponíveis
 
-**Terminal 1 - Backend:**
-```bash
-cd backend
-npm run dev
-```
+| Diretório | Comando | Finalidade |
+|---|---|---|
+| `frontend` | `npm run dev` | Servidor de desenvolvimento do Vite |
+| `frontend` | `npm run build` | Build otimizado para produção |
+| `frontend` | `npm run preview` | Prévia local do build |
+| `backend` | `npm run dev` | API com reinicialização automática |
+| `backend` | `npm start` | API em modo de produção |
 
-O servidor estará disponível em `http://localhost:3000`
+<details>
+<summary><strong>Principais rotas da API</strong></summary>
 
-**Terminal 2 - Frontend:**
-```bash
-cd frontend
-npm run dev
-```
+Todas as rotas abaixo usam o prefixo `/api`.
 
-A aplicação estará disponível em `http://localhost:5173`
+| Grupo | Rotas |
+|---|---|
+| Autenticação | `POST /auth/register`, `POST /auth/login`, `GET /me` |
+| Exercícios | `GET/POST /exercises`, `PUT/DELETE /exercises/:id` |
+| Fichas | `GET/POST /templates`, `GET/PUT/DELETE /templates/:id` |
+| Rotina | `GET/POST /routines`, `DELETE /routines/:day` |
+| Histórico | `GET/POST /history`, `GET /history/:id`, `POST /history/:workoutId/sets` |
+| Usuários | `GET/POST /users`, `PUT/DELETE /users/:id` — somente administradores |
+| Saúde da API | `GET /health` |
 
-### Produção
+</details>
 
-**Backend:**
-```bash
-cd backend
-npm start
-```
+<details>
+<summary><strong>Estrutura do projeto</strong></summary>
 
-**Frontend:**
-```bash
-cd frontend
-npm run build
-```
-
----
-## Dados de acesso
-| Usuario | Senha |
-|:----------:|:-----------:|
-| admin@treino.com | admin123 |
-
-
-## Estrutura de Diretórios
-
-```
+```text
 gym-diary/
 ├── backend/
-│   ├── config/
-│   │   └── database.js           # Configuração de conexão MySQL
-│   ├── controllers/
-│   │   ├── authController.js     # Lógica de autenticação
-│   │   ├── exerciseController.js # Gerenciamento de exercícios
-│   │   ├── historyController.js  # Histórico de treinos
-│   │   ├── routineController.js  # Gerenciamento de rotinas
-│   │   └── templateController.js # Templates de treinos
-│   ├── middlewares/
-│   │   ├── auth.js               # Middleware de autenticação JWT
-│   │   └── validation.js         # Validação de dados
-│   ├── routes/
-│   │   ├── auth.js               # Rotas de autenticação
-│   │   ├── exercises.js          # Rotas de exercícios
-│   │   ├── history.js            # Rotas de histórico
-│   │   ├── routines.js           # Rotas de rotinas
-│   │   ├── templates.js          # Rotas de templates
-│   │   └── index.js              # Agregador de rotas
-│   ├── utils/
-│   │   └── hash.js               # Utilitários de hash
-│   ├── app.js                    # Configuração Express
-│   ├── server.js                 # Entrada da aplicação
-│   ├── init-db.js                # Inicialização do banco
-│   ├── package.json              # Dependências
-│   └── .env                      # Variáveis de ambiente
+│   ├── config/          # Conexão com MySQL
+│   ├── controllers/     # Regras da aplicação
+│   ├── middlewares/     # Autenticação e validação
+│   ├── routes/          # Endpoints da API
+│   ├── utils/           # Exercícios padrão e utilitários
+│   ├── app.js           # Configuração do Express
+│   ├── init-db.js       # Criação inicial do banco
+│   └── server.js        # Entrada do backend
 ├── frontend/
-│   ├── src/
-│   │   ├── components/           # Componentes React reutilizáveis
-│   │   ├── contexts/             # Context API (Auth, Data)
-│   │   ├── pages/                # Páginas principais
-│   │   ├── services/             # Serviços de API
-│   │   ├── utils/                # Funções utilitárias
-│   │   ├── App.jsx               # Componente raiz
-│   │   └── main.jsx              # Entrada da aplicação
-│   ├── public/                   # Arquivos estáticos
-│   ├── package.json              # Dependências
-│   ├── vite.config.js            # Configuração Vite
-│   └── .env                      # Variáveis de ambiente
-├── render.yaml                   # Configuração de deployment
-└── README.md                     # Este arquivo
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── contexts/
+│       ├── pages/
+│       ├── services/
+│       └── utils/
+├── CONTRIBUTING.md
+├── INSTALLATION.md
+├── LICENSE
+└── render.yaml
 ```
 
----
+</details>
 
-## API Endpoints
+## Próximos passos
 
-### Autenticação
-- `POST /api/auth/register` - Registrar novo usuário
-- `POST /api/auth/login` - Login
-- `POST /api/auth/logout` - Logout
+- [ ] Remover credenciais padrão do fluxo de inicialização
+- [ ] Adicionar testes automatizados ao frontend e à API
+- [ ] Aplicar validação de entrada em todas as rotas
+- [ ] Restringir CORS por ambiente
+- [ ] Adicionar recuperação de senha
+- [ ] Criar versão instalável como PWA
+- [ ] Integrar metas e recordes pessoais
 
-### Exercícios
-- `GET /api/exercises` - Listar todos os exercícios
-- `POST /api/exercises` - Criar novo exercício
-- `GET /api/exercises/:id` - Obter detalhes do exercício
-- `PUT /api/exercises/:id` - Atualizar exercício
-- `DELETE /api/exercises/:id` - Deletar exercício
+## Contribuição
 
-### Rotinas
-- `GET /api/routines` - Listar rotinas do usuário
-- `POST /api/routines` - Criar nova rotina
-- `GET /api/routines/:id` - Obter detalhes da rotina
-- `PUT /api/routines/:id` - Atualizar rotina
-- `DELETE /api/routines/:id` - Deletar rotina
+Sugestões e contribuições são bem-vindas. Consulte o [guia de contribuição](gym-diary/CONTRIBUTING.md) antes de abrir um pull request.
 
-### Histórico
-- `GET /api/history` - Obter histórico de treinos
-- `POST /api/history` - Registrar novo treino
-- `GET /api/history/:id` - Obter detalhes do treino
-
-### Templates
-- `GET /api/templates` - Listar templates disponíveis
-- `POST /api/templates` - Criar novo template
-- `DELETE /api/templates/:id` - Deletar template
-
----
-
-## Variáveis de Ambiente
-
-### Backend (.env)
-
-| Variável | Descrição | Padrão |
-|----------|-----------|--------|
-| `PORT` | Porta do servidor | 3000 |
-| `NODE_ENV` | Ambiente (development/production) | development |
-| `DB_HOST` | Host do MySQL | localhost |
-| `DB_PORT` | Porta do MySQL | 3306 |
-| `DB_USER` | Usuário MySQL | root |
-| `DB_PASSWORD` | Senha MySQL | - |
-| `DB_NAME` | Nome do banco de dados | gym_diary |
-| `JWT_SECRET` | Chave secreta JWT | - |
-
-### Frontend (.env)
-
-| Variável | Descrição | Padrão |
-|----------|-----------|--------|
-| `VITE_API_URL` | URL base da API | http://localhost:3000/api |
-
----
-
-## Deployment
-
-### Render
-
-A aplicação está configurada para deployment no Render através do arquivo `render.yaml`.
-
-1. Conectar repositório GitHub ao Render
-2. Selecionar branch principal
-3. Configurar variáveis de ambiente no painel Render
-4. Deploy será realizado automaticamente
-
----
-
-## Segurança
-
-- Senhas armazenadas com hash bcrypt
-- Autenticação baseada em JWT
-- CORS configurado para controlar acesso
-- Validação de entrada de dados
-- Proteção de rotas administrativas
-
----
-
-## Contribuições
-
-As contribuições são bem-vindas. Para contribuir:
-
-1. Fazer fork do projeto
-2. Criar branch para a feature (`git checkout -b feature/AmazingFeature`)
-3. Commit das mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abrir um Pull Request
-
----
-
-## Roadmap
-
-- Integração com aplicativo mobile
-- Sistema de notificações push
-- Suporte a múltiplos idiomas
-- Análise avançada de performance
-- Sistema de competições entre usuários
-- Integração com dispositivos wearables
-
----
-
-## Suporte
-
-Para reportar bugs ou sugerir features, abra uma issue no repositório GitHub.
-
----
 ## Licença
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes completos.
+Distribuído sob a licença MIT. Consulte [`LICENSE`](gym-diary/LICENSE) para mais informações.
 
-A Licença MIT é uma licença de software de código aberto permissiva que permite:
-
-- Uso comercial
-- Modificação
-- Distribuição
-- Uso privado
-
-Com as seguintes obrigações:
-
-- Incluir aviso de licença e copyright
-- Incluir uma cópia da licença
-
----
-
-
-**Última atualização:** Maio 2026
-
-
-```mermaid
-flowchart TD
-    A[Início do App] --> B[Login como Personal]
-    B --> C[Home do Personal]
-
-    C --> D[Menu Lateral]
-
-    D --> E[Início]
-    D --> F[Alunos]
-    D --> G[Treinos]
-    D --> H[Avaliações]
-    D --> I[Sair]
-
-    F --> J[Listar alunos vinculados]
-    F --> K[Adicionar aluno por e-mail]
-
-    K --> L[Personal informa e-mail do aluno]
-    L --> M{Aluno já possui conta?}
-
-    M -->|Sim| N[Vincular aluno à academia/personal]
-    M -->|Não| O[Enviar convite para cadastro]
-
-    N --> P[Perfil do aluno]
-    O --> P
-
-    P --> Q[Ver histórico do aluno]
-    P --> R[Ver treinos do aluno]
-    P --> S[Realizar avaliação física]
-    P --> T[Criar ou editar treino do aluno]
-
-    H --> U[Listar avaliações]
-    U --> V[Nova avaliação]
-    V --> W[Questionário inicial / Anamnese]
-    W --> X[Dados físicos e medidas]
-    X --> Y[Sistema gera sugestão de treino]
-    Y --> Z[Personal revisa e adapta]
-    Z --> AA[Salvar avaliação e treino sugerido]
-
-    G --> AB[Modelos de treino]
-    AB --> AC[Criar treino modelo]
-    AB --> AD[Editar treino modelo]
-    AB --> AE[Atribuir treino a aluno]
-
-    T --> AF[Selecionar aluno]
-    AF --> AG[Montar treino personalizado]
-    AG --> AH[Salvar e liberar para o aluno]
-
-    I --> AI[Logout]
-```
+<div align="center">
+  Desenvolvido por <a href="https://github.com/Julio5630">Júlio César</a>
+</div>
